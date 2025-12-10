@@ -585,6 +585,11 @@ impl Task {
     fn populate_spec_metadata(&self, spec: &mut usage::Spec) {
         spec.name = self.display_name.clone();
         spec.bin = self.display_name.clone();
+        // Set both spec.about and spec.cmd.help for task description display
+        // spec.about is used by the CLI template header, cmd.help is used in subcommand listings
+        if spec.about.is_none() && !self.description.is_empty() {
+            spec.about = Some(self.description.clone());
+        }
         if spec.cmd.help.is_none() {
             spec.cmd.help = Some(self.description.clone());
         }
