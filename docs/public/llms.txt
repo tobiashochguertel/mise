@@ -1,0 +1,285 @@
+# mise-en-place
+
+> mise-en-place documentation
+
+The front-end to your dev env
+<span class="formerly">Pronounced "MEEZ ahn plahs"</span>
+
+
+## Table of Contents
+
+### Guides
+
+- [Demo](/demo.md)
+- [Getting Started](/getting-started.md)
+- [Walkthrough](/walkthrough.md)
+- [Installing Mise](/installing-mise.md)
+- [IDE Integration](/ide-integration.md)
+- [Continuous integration](/continuous-integration.md)
+
+### Configuration
+
+- [Configuration](/configuration.md)
+- [Settings](/configuration/settings.md)
+- [Config Environments](/configuration/environments.md)
+
+### Dev Tools
+
+- [Dev Tools](/dev-tools.md)
+- [Comparison to asdf](/dev-tools/comparison-to-asdf.md)
+- [Shims](/dev-tools/shims.md)
+- [Tool Aliases](/dev-tools/aliases.md)
+- [Tool Stubs](/dev-tools/tool-stubs.md)
+- [Registry](/registry.md)
+- [mise.lock Lockfile](/dev-tools/mise-lock.md)
+- [Prepare&#x20;](/dev-tools/prepare.md)
+- [Backend Architecture](/dev-tools/backend_architecture.md)
+- [Core Tools](/core-tools.md)
+- [Backends](/dev-tools/backends.md)
+
+#### Core tools
+
+- [Bun](/lang/bun.md)
+- [Deno](/lang/deno.md)
+- [Elixir](/lang/elixir.md)
+- [Erlang](/lang/erlang.md)
+- [Go](/lang/go.md)
+- [Java](/lang/java.md)
+- [Node](/lang/node.md)
+- [Python](/lang/python.md)
+- [Ruby](/lang/ruby.md)
+- [Rust](/lang/rust.md)
+- [Swift&#x20;](/lang/swift.md)
+- [Zig](/lang/zig.md)
+
+#### Backends
+
+- [Aqua Backend](/dev-tools/backends/aqua.md)
+- [asdf Backend](/dev-tools/backends/asdf.md)
+- [Cargo Backend](/dev-tools/backends/cargo.md)
+- [Conda Backend&#x20;](/dev-tools/backends/conda.md)
+- [Dotnet backend](/dev-tools/backends/dotnet.md)
+- [Forgejo Backend](/dev-tools/backends/forgejo.md)
+- [gem Backend](/dev-tools/backends/gem.md)
+- [GitHub Backend](/dev-tools/backends/github.md)
+- [GitLab Backend](/dev-tools/backends/gitlab.md)
+- [Go Backend](/dev-tools/backends/go.md)
+- [HTTP Backend](/dev-tools/backends/http.md)
+- [npm Backend](/dev-tools/backends/npm.md)
+- [pipx Backend](/dev-tools/backends/pipx.md)
+- [SPM Backend&#x20;](/dev-tools/backends/spm.md)
+- [Ubi Backend](/dev-tools/backends/ubi.md)
+- [Vfox Backend](/dev-tools/backends/vfox.md)
+
+### Environments
+
+- [Environments](/environments.md)
+- [Shell Aliases](/shell-aliases.md)
+- [Secrets](/environments/secrets.md)
+- [Hooks&#x20;](/hooks.md)
+- [direnv&#x20;](/direnv.md)
+
+#### Secrets
+
+- [sops&#x20;](/environments/secrets/sops.md)
+- [Direct age Encryption&#x20;](/environments/secrets/age.md)
+
+### Tasks
+
+- [Tasks](/tasks.md)
+- [Task System Architecture](/tasks/architecture.md)
+- [Running Tasks](/tasks/running-tasks.md)
+- [TOML-based Tasks](/tasks/toml-tasks.md)
+- [File Tasks](/tasks/file-tasks.md)
+- [Task Arguments](/tasks/task-arguments.md)
+- [Task Configuration](/tasks/task-configuration.md)
+- [Task Templates](/tasks/templates.md)
+- [Monorepo Tasks&#x20;](/tasks/monorepo.md)
+
+### Plugins
+
+- [Plugins](/plugins.md)
+- [Using Plugins](/plugin-usage.md)
+- [Backend Plugin Development](/backend-plugin-development.md)
+- [Tool Plugin Development](/tool-plugin-development.md)
+- [Environment Plugin Development](/env-plugin-development.md)
+- [Plugin Lua Modules](/plugin-lua-modules.md)
+- [Plugin Publishing](/plugin-publishing.md)
+- [asdf (Legacy) Plugins](/asdf-legacy-plugins.md)
+
+### About
+
+- [About](/about.md)
+- [Glossary](/glossary.md)
+- [FAQs](/faq.md)
+- [Troubleshooting](/troubleshooting.md)
+- [Tips & Tricks](/tips-and-tricks.md)
+- [Cookbook](/mise-cookbook.md)
+- [Contributing](/contributing.md)
+- [External Resources](/external-resources.md)
+
+#### Cookbook
+
+- [Mise + C++ Cookbook](/mise-cookbook/cpp.md)
+- [Mise + Docker Cookbook](/mise-cookbook/docker.md)
+- [Mise + Node.js Cookbook](/mise-cookbook/nodejs.md)
+- [Mise + Ruby Cookbook](/mise-cookbook/ruby.md)
+- [Mise + Terraform/Opentofu Cookbook](/mise-cookbook/terraform.md)
+- [Mise + Python Cookbook](/mise-cookbook/python.md)
+- [Presets](/mise-cookbook/presets.md)
+- [Shell tricks](/mise-cookbook/shell-tricks.md)
+
+### Advanced
+
+- [mise Architecture](/architecture.md)
+- [Paranoid](/paranoid.md)
+- [Templates](/templates.md)
+- [URL Replacements](/url-replacements.md)
+- [Model Context Protocol (MCP)](/mcp.md)
+- [How I use mise](/how-i-use-mise.md)
+- [Directory Structure](/directories.md)
+- [Cache Behavior](/cache-behavior.md)
+
+### CLI Reference
+
+- [`mise`](/cli.md)
+- [`mise activate`](/cli/activate.md)
+- [`mise backends`](/cli/backends.md)
+- [`mise bin-paths`](/cli/bin-paths.md)
+- [`mise cache`](/cli/cache.md)
+- [`mise completion`](/cli/completion.md)
+- [`mise config`](/cli/config.md)
+- [`mise deactivate`](/cli/deactivate.md)
+- [`mise doctor`](/cli/doctor.md)
+- [`mise edit`](/cli/edit.md)
+- [`mise en`](/cli/en.md)
+- [`mise env`](/cli/env.md)
+- [`mise exec`](/cli/exec.md)
+- [`mise fmt`](/cli/fmt.md)
+- [`mise generate`](/cli/generate.md)
+- [`mise implode`](/cli/implode.md)
+- [`mise install`](/cli/install.md)
+- [`mise install-into`](/cli/install-into.md)
+- [`mise latest`](/cli/latest.md)
+- [`mise link`](/cli/link.md)
+- [`mise lock`](/cli/lock.md)
+- [`mise ls`](/cli/ls.md)
+- [`mise ls-remote`](/cli/ls-remote.md)
+- [`mise mcp`](/cli/mcp.md)
+- [`mise outdated`](/cli/outdated.md)
+- [`mise plugins`](/cli/plugins.md)
+- [`mise prepare`](/cli/prepare.md)
+- [`mise prune`](/cli/prune.md)
+- [`mise registry`](/cli/registry.md)
+- [`mise reshim`](/cli/reshim.md)
+- [`mise run`](/cli/run.md)
+- [`mise search`](/cli/search.md)
+- [`mise self-update`](/cli/self-update.md)
+- [`mise set`](/cli/set.md)
+- [`mise settings`](/cli/settings.md)
+- [`mise shell`](/cli/shell.md)
+- [`mise shell-alias`](/cli/shell-alias.md)
+- [`mise sync`](/cli/sync.md)
+- [`mise tasks`](/cli/tasks.md)
+- [`mise test-tool`](/cli/test-tool.md)
+- [`mise tool`](/cli/tool.md)
+- [`mise tool-alias`](/cli/tool-alias.md)
+- [`mise tool-stub`](/cli/tool-stub.md)
+- [`mise trust`](/cli/trust.md)
+- [`mise uninstall`](/cli/uninstall.md)
+- [`mise unset`](/cli/unset.md)
+- [`mise unuse`](/cli/unuse.md)
+- [`mise upgrade`](/cli/upgrade.md)
+- [`mise use`](/cli/use.md)
+- [`mise version`](/cli/version.md)
+- [`mise watch`](/cli/watch.md)
+- [`mise where`](/cli/where.md)
+- [`mise which`](/cli/which.md)
+
+#### mise backends
+
+- [`mise backends ls`](/cli/backends/ls.md)
+
+#### mise cache
+
+- [`mise cache clear`](/cli/cache/clear.md)
+- [`mise cache path`](/cli/cache/path.md)
+- [`mise cache prune`](/cli/cache/prune.md)
+
+#### mise config
+
+- [`mise config get`](/cli/config/get.md)
+- [`mise config ls`](/cli/config/ls.md)
+- [`mise config set`](/cli/config/set.md)
+
+#### mise doctor
+
+- [`mise doctor path`](/cli/doctor/path.md)
+
+#### mise generate
+
+- [`mise generate bootstrap`](/cli/generate/bootstrap.md)
+- [`mise generate config`](/cli/generate/config.md)
+- [`mise generate devcontainer`](/cli/generate/devcontainer.md)
+- [`mise generate git-pre-commit`](/cli/generate/git-pre-commit.md)
+- [`mise generate github-action`](/cli/generate/github-action.md)
+- [`mise generate task-docs`](/cli/generate/task-docs.md)
+- [`mise generate task-stubs`](/cli/generate/task-stubs.md)
+- [`mise generate tool-stub`](/cli/generate/tool-stub.md)
+
+#### mise plugins
+
+- [`mise plugins install`](/cli/plugins/install.md)
+- [`mise plugins link`](/cli/plugins/link.md)
+- [`mise plugins ls`](/cli/plugins/ls.md)
+- [`mise plugins ls-remote`](/cli/plugins/ls-remote.md)
+- [`mise plugins uninstall`](/cli/plugins/uninstall.md)
+- [`mise plugins update`](/cli/plugins/update.md)
+
+#### mise settings
+
+- [`mise settings add`](/cli/settings/add.md)
+- [`mise settings get`](/cli/settings/get.md)
+- [`mise settings ls`](/cli/settings/ls.md)
+- [`mise settings set`](/cli/settings/set.md)
+- [`mise settings unset`](/cli/settings/unset.md)
+
+#### mise shell-alias
+
+- [`mise shell-alias get`](/cli/shell-alias/get.md)
+- [`mise shell-alias ls`](/cli/shell-alias/ls.md)
+- [`mise shell-alias set`](/cli/shell-alias/set.md)
+- [`mise shell-alias unset`](/cli/shell-alias/unset.md)
+
+#### mise sync
+
+- [`mise sync node`](/cli/sync/node.md)
+- [`mise sync python`](/cli/sync/python.md)
+- [`mise sync ruby`](/cli/sync/ruby.md)
+
+#### mise tasks
+
+- [`mise tasks add`](/cli/tasks/add.md)
+- [`mise tasks deps`](/cli/tasks/deps.md)
+- [`mise tasks edit`](/cli/tasks/edit.md)
+- [`mise tasks info`](/cli/tasks/info.md)
+- [`mise tasks ls`](/cli/tasks/ls.md)
+- [`mise tasks run`](/cli/tasks/run.md)
+- [`mise tasks validate`](/cli/tasks/validate.md)
+
+#### mise tool-alias
+
+- [`mise tool-alias get`](/cli/tool-alias/get.md)
+- [`mise tool-alias ls`](/cli/tool-alias/ls.md)
+- [`mise tool-alias set`](/cli/tool-alias/set.md)
+- [`mise tool-alias unset`](/cli/tool-alias/unset.md)
+
+### Other
+
+- [.NET](/lang/dotnet.md)
+- [Coming from rtx](/rtx.md)
+- [Contact](/contact.md)
+- [Errors](/errors.md)
+- [Mise + Neovim Cookbook](/mise-cookbook/neovim.md)
+- [mise-docs](/README.md)
+- [S3 Backend&#x20;](/dev-tools/backends/s3.md)
