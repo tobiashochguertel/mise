@@ -134,6 +134,19 @@ When integrated with an AI assistant, you can ask questions like:
 
 The AI assistant will query the MCP server to provide accurate, up-to-date information about your development environment and can execute tasks on your behalf.
 
+## Docs for AI (llms.txt)
+
+The mise documentation site publishes two machine-readable files that AI assistants and LLM tools can use to access the full docs:
+
+| File | Description | URL |
+|------|-------------|-----|
+| `llms.txt` | Table of contents with links to every docs page | `https://mise.jdx.dev/llms.txt` |
+| `llms-full.txt` | Complete docs concatenated into one file (~200K tokens) | `https://mise.jdx.dev/llms-full.txt` |
+
+These follow the [llms.txt standard](https://llmstxt.org/) and are generated automatically during the docs build by [vitepress-plugin-llms](https://github.com/okineadev/vitepress-plugin-llms).
+
+You can point any AI tool that supports `llms.txt` or custom context files at these URLs to give it full knowledge of mise's documentation.
+
 ## Technical Details
 
 The MCP server implementation can be found in [`src/cli/mcp.rs`](https://github.com/jdx/mise/blob/main/src/cli/mcp.rs). It implements the ServerHandler trait from the rmcp crate to handle:

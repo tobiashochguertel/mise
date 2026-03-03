@@ -34,6 +34,7 @@
     "typescript": "^5.9.3",
     "vitepress": "1.6.4",
     "vitepress-plugin-group-icons": "^1.6.5",
+    "vitepress-plugin-llms": "^1.11.0",
     "vitepress-plugin-mermaid": "2.0.17",
     "vitepress-plugin-tabs": "^0.7.3"
   }

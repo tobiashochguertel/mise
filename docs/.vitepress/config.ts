@@ -6,6 +6,7 @@ import {
 } from "vitepress-plugin-group-icons";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import { withMermaid } from "vitepress-plugin-mermaid";
+import llmstxt from "vitepress-plugin-llms";
 import kdlGrammar from "./grammars/kdl.tmLanguage.json";
 import miseTomlGrammar from "./grammars/mise-toml.tmLanguage.json";
 
@@ -276,6 +277,7 @@ export default withMermaid(
     },
     vite: {
       plugins: [
+        ...llmstxt(),
         groupIconVitePlugin({
           customIcon: {
             ".toml": "vscode-icons:file-type-toml",
