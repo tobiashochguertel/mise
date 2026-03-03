@@ -2,23 +2,24 @@
 
 ## 📊 Feature Comparison
 
-| Feature | kapa.ai | Context7 | Inkeep | arabold/docs-mcp | vitepress-plugin-llms | Built-in mise MCP tool |
-|---|---|---|---|---|---|---|
-| **Cost for mise** | Free (OSS program, if approved) | Free | Free (OSS tier) | Free (self-hosted) | Free | Free |
-| **Infrastructure owned by mise** | None | None | None (or self-host) | N/A (user runs it) | None (static files) | None |
-| **Hosted URL for users** | ✅ Yes (e.g., `mcp.docs.mise.jdx.dev`) | ✅ Yes (context7.com) | ✅ Yes (or self-host) | ❌ No (each user runs locally) | ❌ No (static file discovery) | ❌ No (part of `mise mcp`) |
-| **Search type** | Semantic RAG | Semantic + version-specific | Semantic RAG | Semantic (with embeddings) | Keyword (static index) | Keyword |
-| **Search quality** | ★★★★★ | ★★★★☆ | ★★★★★ | ★★★★★ (with embeddings) | ★★★☆☆ | ★★★☆☆ |
-| **Auto-updates from docs** | ✅ Yes | ✅ Yes | ✅ Yes | ❌ Manual re-index per user | ✅ Every docs build | ✅ Live fetch |
-| **User setup effort** | Zero install (URL) | `npx` install | URL or `npx` | `npx` or Docker | Auto-discovered | Zero (part of `mise mcp`) |
-| **Open source** | ❌ No (proprietary) | ✅ Yes (MIT) | 🔶 Partially | ✅ Yes (MIT) | ✅ Yes (MIT) | ✅ Yes (already in mise) |
-| **Self-hostable** | ❌ No | ❌ No | ✅ Yes (Enterprise) | ✅ Yes | N/A (static files) | ✅ Yes (with mise) |
-| **Vendor dependency** | High | Medium | Medium | None | None | None |
-| **Analytics** | ✅ Full dashboard | Limited | ✅ Yes | ❌ No | ❌ No | ❌ No |
-| **MCP transport** | Streamable HTTP | stdio (npx) | HTTP | SSE / HTTP | N/A (file) | stdio (part of `mise mcp`) |
-| **Works offline** | ❌ No | ❌ No | ❌ No (cloud) | ✅ Yes | ✅ Partially (llms-full.txt) | ✅ Yes (bundled option) |
-| **Approval/wait time** | Days (OSS program) | Hours (auto-index) | Days (OSS signup) | None | None | Depends on PR review |
-| **Implementation effort** | Low (dashboard + form) | Minimal (web form) | Low-Medium | N/A (user setup) | Very low (npm + 1 line) | Medium (Rust, ~100-200 lines) |
+| Feature | kapa.ai | Context7 | GitMCP | mcpdoc | arabold/docs-mcp | vitepress-plugin-llms | Built-in mise MCP tool |
+|---|---|---|---|---|---|---|---|
+| **Cost for mise** | Free (OSS program, if approved) | Free | Free | Free | Free (self-hosted) | Free | Free |
+| **Infrastructure owned by mise** | None | None | None | None | N/A (user runs it) | None (static files) | None |
+| **Hosted URL for users** | ✅ Yes | ✅ Yes (context7.com) | ✅ Yes (gitmcp.io) | ❌ No (user runs locally) | ❌ No (each user runs locally) | ❌ No (static file discovery) | ❌ No (part of `mise mcp`) |
+| **Search type** | Semantic RAG | Semantic + version-specific | Fetch-based | Fetch-based (llms.txt-native) | Semantic (with embeddings) | Keyword (static index) | Keyword |
+| **Search quality** | ★★★★★ | ★★★★☆ | ★★★☆☆ | ★★★☆☆ | ★★★★★ (with embeddings) | ★★★☆☆ | ★★★☆☆ |
+| **Auto-updates from docs** | ✅ Yes | ✅ Yes | ✅ Yes (reads GitHub live) | ✅ Yes (reads live URL) | ❌ Manual re-index per user | ✅ Every docs build | ✅ Live fetch |
+| **User setup effort** | Zero install (URL) | `npx` install | Zero (HTTP URL) | `uvx` install | `npx` or Docker | Auto-discovered | Zero (part of `mise mcp`) |
+| **Open source** | ❌ No (proprietary) | ✅ Yes (MIT) | ✅ Yes (MIT) | ✅ Yes (MIT) | ✅ Yes (MIT) | ✅ Yes (MIT) | ✅ Yes (already in mise) |
+| **Self-hostable** | ❌ No | ❌ No | ✅ Yes | ✅ Yes | ✅ Yes | N/A (static files) | ✅ Yes (with mise) |
+| **Vendor dependency** | High | Medium | Low (open-source host) | None | None | None | None |
+| **Analytics** | ✅ Full dashboard | Limited | ❌ No | ❌ No | ❌ No | ❌ No | ❌ No |
+| **MCP transport** | Streamable HTTP | stdio (npx) | HTTP (remote) | stdio (uvx) | SSE / HTTP | N/A (file) | stdio (part of `mise mcp`) |
+| **Works offline** | ❌ No | ❌ No | ❌ No (GitHub API) | ✅ Partially | ✅ Yes | ✅ Partially (llms-full.txt) | ✅ Yes (bundled option) |
+| **Approval/wait time** | Days (OSS program) | Hours (auto-index) | **Zero (works immediately)** | Zero | None | None | Depends on PR review |
+| **Works before PR merge** | ❌ | ❌ (needs mise.jdx.dev/llms.txt) | ✅ (reads repo directly) | ✅ (with llms-full.txt URL) | ✅ (crawls mise.jdx.dev) | N/A | ❌ |
+| **Implementation effort** | Low (dashboard + form) | Minimal (web form) | Zero (URL only) | Minimal (uvx config) | N/A (user setup) | Very low (npm + 1 line) | Medium (Rust, ~100-200 lines) |
 
 ## 💰 Cost Comparison
 
@@ -35,9 +36,12 @@
 
 | Approach | Overall Rating | Best For |
 |---|---|---|
-| **vitepress-plugin-llms** | ⭐⭐⭐⭐⭐ | First step — foundation for everything else |
-| **Context7** | ⭐⭐⭐⭐ | Free hosted MCP for users of Cursor/Claude |
+| **GitMCP** | ⭐⭐⭐⭐⭐ | Zero-setup remote MCP, works **today**, auto-upgrades on PR merge |
+| **mcpdoc (langchain-ai)** | ⭐⭐⭐⭐⭐ | llms.txt-native local MCP once `mise.jdx.dev/llms.txt` is live |
+| **vitepress-plugin-llms** | ⭐⭐⭐⭐⭐ | Foundation — generates the llms.txt/llms-full.txt files everything else uses |
+| **Context7** | ⭐⭐⭐ | Good for users once `mise.jdx.dev/llms.txt` deployed; **fails with raw GitHub URLs** |
 | **Built-in mise MCP tool** | ⭐⭐⭐⭐ | Native integration for `mise mcp` users |
+| **arabold/docs-mcp-server** | ⭐⭐⭐⭐ | Best local semantic search option (crawls mise.jdx.dev today) |
 | **arabold/docs-mcp-server** | ⭐⭐⭐⭐ | Power users wanting full local control |
 | **kapa.ai** | ⭐⭐⭐ | Premium hosted MCP endpoint (if OSS approved) |
 | **Inkeep** | ⭐⭐⭐ | Alternative to kapa.ai with self-hosting option |

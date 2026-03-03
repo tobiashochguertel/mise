@@ -8,14 +8,20 @@ Research into adding a documentation MCP tool/server for the mise project, enabl
 
 - **[00-overview.md](00-overview.md)** - Executive summary and key findings
 
-### Detailed Analysis
+### Detailed Analysis (Phase 1 — Initial Research)
 
 1. **[01-kapa-ai-detailed.md](01-kapa-ai-detailed.md)** - kapa.ai — Commercial hosted docs-AI platform with MCP server ⭐⭐⭐ (paid, open-source program available)
-2. **[02-context7-detailed.md](02-context7-detailed.md)** - Context7 (Upstash) — Freemium docs MCP server for code libraries ⭐⭐⭐⭐ (free tier, easy submission)
+2. **[02-context7-detailed.md](02-context7-detailed.md)** - Context7 (Upstash) — Freemium docs MCP server ⭐⭐⭐ (free tier; **requires canonical URL, fails with raw GitHub**)
 3. **[03-inkeep-detailed.md](03-inkeep-detailed.md)** - Inkeep — Commercial platform with free OSS tier and self-hosting ⭐⭐⭐ (freemium)
 4. **[04-arabold-docs-mcp-server-detailed.md](04-arabold-docs-mcp-server-detailed.md)** - arabold/docs-mcp-server — Open-source self-hosted docs MCP ⭐⭐⭐⭐ (free, self-hosted)
-5. **[05-llms-txt-vitepress-plugin-detailed.md](05-llms-txt-vitepress-plugin-detailed.md)** - vitepress-plugin-llms — Static llms.txt generation ⭐⭐⭐⭐⭐ (free, zero-dependency)
+5. **[05-llms-txt-vitepress-plugin-detailed.md](05-llms-txt-vitepress-plugin-detailed.md)** - vitepress-plugin-llms — Static llms.txt generation ⭐⭐⭐⭐⭐ (free, zero-dependency) — **IMPLEMENTED**
 6. **[06-mise-mcp-builtin-tool-detailed.md](06-mise-mcp-builtin-tool-detailed.md)** - Built-in mise MCP docs tool — Extend existing mise MCP server ⭐⭐⭐⭐ (fully custom, zero infra)
+
+### Detailed Analysis (Phase 2 — Extended Research after Context7 Failure)
+
+7. **[07-context7-failure-analysis.md](07-context7-failure-analysis.md)** - ⚠️ Why Context7 fails with raw GitHub URLs — root cause and workarounds
+8. **[08-mcpdoc-langchain-detailed.md](08-mcpdoc-langchain-detailed.md)** - langchain-ai/mcpdoc — llms.txt-native local MCP server ⭐⭐⭐⭐⭐ (MIT, uvx, no API key)
+9. **[09-gitmcp-detailed.md](09-gitmcp-detailed.md)** - GitMCP (idosal/git-mcp) — Zero-setup remote MCP for any GitHub repo ⭐⭐⭐⭐⭐ (free, **works TODAY**)
 
 ### Comprehensive Comparison
 
@@ -23,22 +29,35 @@ Research into adding a documentation MCP tool/server for the mise project, enabl
 
 ## 🎯 Quick Findings
 
-### TL;DR: Two-Phase Approach ✅
+### Updated Recommendations (2026-03-03)
 
-**Phase 1 (Immediate, zero-cost):** Add `vitepress-plugin-llms` to generate `llms.txt` + `llms-full.txt` from the VitePress docs site, and submit mise to Context7's free registry.
+**Right now (before PR merge):**
+1. Add **GitMCP** (`gitmcp.io/jdx/mise`) to your MCP config — zero setup, works today, auto-upgrades when PR merges
+2. Use **arabold/docs-mcp-server** pointed at `https://mise.jdx.dev` for semantic search today
+
+**After `jdx/mise` PR is merged:**
+3. Add **mcpdoc** with `https://mise.jdx.dev/llms.txt` for the best llms.txt-native experience
+4. **Context7** will then also work (submit mise at context7.com/add-library)
+
+> ⚠️ **Context7 limitation discovered:** Context7 cannot index a `llms.txt` file hosted at `raw.githubusercontent.com` — it needs the canonical docs domain (`mise.jdx.dev`). See [07-context7-failure-analysis.md](07-context7-failure-analysis.md).
+
+### Original TL;DR: Two-Phase Approach ✅
+
+**Phase 1 (Implemented):** Add `vitepress-plugin-llms` to generate `llms.txt` + `llms-full.txt`. **PR: https://github.com/jdx/mise/compare/main...tobiashochguertel:mise:feat/docs-llms-txt-vitepress-plugin**
 
 **Phase 2 (Enhanced):** Add a `search_docs` tool to the existing `mise mcp` command that fetches from `mise.jdx.dev/llms.txt`, giving users a native `mise mcp` docs tool without any external dependencies.
 
-### Key Metrics Comparison
+### Key Metrics Comparison (Updated)
 
-| Approach | Cost | Infra Required | Quality | Effort |
-|---|---|---|---|---|
-| vitepress-plugin-llms | Free | None | ★★★★☆ | 1–2 hours |
-| Context7 submission | Free | None | ★★★★☆ | 30 min |
-| arabold/docs-mcp-server | Free (self-host) | User's machine | ★★★★★ | Hours per user |
-| kapa.ai (OSS program) | Free (if approved) | Hosted by kapa | ★★★★★ | Days (approval) |
-| Inkeep OSS | Free | Self-host or cloud | ★★★★★ | Days |
-| Built-in mise MCP tool | Free | None | ★★★☆☆ | 2–4 hours (Rust) |
+| Approach | Cost | Infra Required | Works Before PR? | Quality | Effort |
+|---|---|---|---|---|---|
+| **GitMCP** | Free | None | ✅ Yes | ★★★☆☆ | Zero |
+| **mcpdoc** | Free | None | ⚠️ Partial | ★★★☆☆ | 5 min |
+| vitepress-plugin-llms | Free | None | N/A (generates files) | ★★★★☆ | 1–2 hours |
+| arabold/docs-mcp-server | Free (self-host) | User's machine | ✅ Yes | ★★★★★ | Hours per user |
+| Context7 | Free | None | ❌ Needs deployed URL | ★★★★☆ | 30 min |
+| kapa.ai (OSS program) | Free (if approved) | Hosted by kapa | ❌ Needs deployment | ★★★★★ | Days (approval) |
+| Built-in mise MCP tool | Free | None | ❌ Needs PR merge | ★★★☆☆ | 2–4 hours (Rust) |
 
 ## 🔍 Research Methodology
 
@@ -125,9 +144,11 @@ Astro hosts a live MCP server at `https://mcp.docs.astro.build/mcp` powered by k
 
 | Use Case | Recommendation |
 |---|---|
+| Zero-setup, works now | **GitMCP** (`gitmcp.io/jdx/mise`) |
 | Local self-hosted docs search | arabold/docs-mcp-server pointed at mise.jdx.dev |
-| Quick no-install access | Use Context7 if/when mise is added |
-| Full semantic search | Wait for kapa.ai integration or use Inkeep |
+| llms.txt-native (after PR) | mcpdoc with `https://mise.jdx.dev/llms.txt` |
+| Quick no-install hosted (after PR) | Context7 when mise is added |
+| Full semantic search | arabold/docs-mcp-server or wait for kapa.ai |
 
 ## 💡 Key Insights
 
@@ -161,6 +182,9 @@ For users who want full control, `arabold/docs-mcp-server` can index mise.jdx.de
 
 ### Tools & Projects
 
+- [GitMCP (GitHub)](https://github.com/idosal/git-mcp)
+- [GitMCP (hosted)](https://gitmcp.io)
+- [langchain-ai/mcpdoc (GitHub)](https://github.com/langchain-ai/mcpdoc)
 - [vitepress-plugin-llms (npm)](https://www.npmjs.com/package/vitepress-plugin-llms)
 - [vitepress-plugin-llms (GitHub)](https://github.com/okineadev/vitepress-plugin-llms)
 - [Context7 (GitHub)](https://github.com/upstash/context7)
